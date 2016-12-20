@@ -7,22 +7,6 @@ if (typeof Promise.prototype.finally !== 'function') {
 		var C = typeof O.constructor === 'undefined' ? defaultConstructor : O.constructor;
 		var S = C[Symbol.species];
 		return S == null ? defaultConstructor : S;
-
-		var C = O.constructor;
-		if (typeof C === 'undefined') {
-			return defaultConstructor;
-		}
-		if (!C || (typeof C !== 'object' && typeof C !== 'function')) {
-			throw new TypeError('O.constructor is not an Object');
-		}
-		var S = C[Symbol.species];
-		if (S == null) {
-			return defaultConstructor;
-		}
-		if (typeof S === 'function' && S.prototype) {
-			return S;
-		}
-		throw new TypeError('no constructor found');
 	};
 	var shim = {
 		finally(onFinally) {
